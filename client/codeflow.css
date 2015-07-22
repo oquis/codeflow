@@ -1,0 +1,18 @@
+/* For fixed navbar */
+body {
+  padding-top: 70px;
+}
+
+@media (min-width: 768px) {
+  #member-registration .form-control {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  #member-registration .form-group {
+    min-width: 0;
+    width: 100%;
+  }
+}

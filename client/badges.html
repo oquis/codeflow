@@ -1,0 +1,53 @@
+<template name="badges">
+  <!--
+    Section header
+  -->
+  <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h2 class="text-primary">
+          Medallas del equipo
+          <button type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+        </h2>
+      </div>
+    </div> <!-- /col-md-12 -->
+  </div> <!-- /row -->
+  
+  <!--
+    Section body.
+      Row for holding panels with the registered members' info
+  -->
+  <div class="row">
+    {{#each members}}
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <button class="close" id="delete-member">&times;</button>
+            <h3 class="panel-title">{{name}}</h3>
+          </div>
+          <div class="panel-body">
+            stackoverflow ID: <strong>{{id}}</strong>
+          </div>
+        </div>
+      </div> <!-- /col-md-6 -->
+    {{/each}}
+  </div> <!-- /row -->
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal-confirm">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel">Confirmación</h2>
+        </div> -->
+        <div class="modal-body">
+          ¿Estás seguro de eliminar al miembro <strong>{{selectedMember.name}}</strong> del equipo?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" id="delete-confirm">Sí</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
