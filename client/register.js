@@ -1,13 +1,14 @@
-// Template.register.helpers({
-//   errorMessage: function () {
-//     return Session.get('errorMessage');
-//   }
-// });
-
+/**
+  Event handlers for the register template
+ */
 Template.register.events({
+  /**
+    Handles the member registration form submission by calling a Meteor method
+    to process the user input and insert the member to the db
+   */
   'submit #member-registration': function (event, template) {
     event.preventDefault();
-    template.$('#member-registration .form-group').removeClass('has-error')
+    template.$('#member-registration .form-group').removeClass('has-error');
     
     // get and trim the input fields values
     var memberName = $.trim(template.$('#member-name').val()),
@@ -40,8 +41,10 @@ Template.register.events({
     });
   },
   
+  /**
+    Removes the has-error class from the form fields on blur
+   */
   'blur #member-registration input': function (event, template) {
-    console.log(event);
     $(event.target).closest('.form-group').removeClass('has-error');
   }
 });

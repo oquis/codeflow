@@ -1,3 +1,6 @@
+<!--
+  Template to display the team member's reputation and badge count
+-->
 <template name="badges">
   <!--
     Section header
@@ -32,14 +35,14 @@
       </div> <!-- /col-md-6 -->
     {{/each}}
   </div> <!-- /row -->
-
+  
+  <!--
+    Confirm dialog
+      Modal window used to confirm the removal of a user
+  -->
   <div class="modal fade" tabindex="-1" role="dialog" id="modal-confirm">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <!-- <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h2 class="modal-title" id="myModalLabel">Confirmación</h2>
-        </div> -->
         <div class="modal-body">
           ¿Estás seguro de eliminar al miembro <strong>{{selectedMember.name}}</strong> del equipo?
         </div>
