@@ -4,7 +4,14 @@
 Template.register.events({
   /**
     Handles the member registration form submission by calling a Meteor method
-    to process the user input and insert the member to the db
+    to process the user input and insert the member to the db.
+    
+    After the member has been inserted to the Members collection successfully,
+    an http call is made to the stackexchange API to get the new member's
+    stackoverflow user information. If the user id provided exists in
+    stackoverflow, a call is made to the updateMember Meteor method to update
+    the Members collection, if the user doesn't exist the member gets removed
+    from the Members collection.
    */
   'submit #member-registration': function (event, template) {
     event.preventDefault();
@@ -35,6 +42,22 @@ Template.register.events({
       // if there were no error on the fields, the user has been added to the
       // db, so we only need to reset the form and set focus on the member name
       if (result) {
+        HTTP.get('https://api.stackexchange.com/2.2/users/' + memberSoId,
+                  {params: {order: "desc", sort: "reputation", site: "stackoverflow"}},
+                  function (error, response) {
+                    if (error) {
+                      // handle the error returned by the api
+                      e = response.data;
+                      if (e.error_id === 400 && e.error_message === "ids") {
+                        Meteor.call('deleteMember', result);
+                        alert("No existe el ID de stackoverflow proporcionado");
+                      }
+                    } else {
+                      // update the member's data
+                      Meteor.call('updateMember', response.data.items);
+                    }
+                 });
+        
         $('#member-registration')[0].reset();
         $memberName.focus();
       }

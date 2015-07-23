@@ -9,8 +9,8 @@
     <div class="col-md-12">
       <div class="page-header">
         <h2 class="text-primary">
-          Medallas del equipo
-          <button type="button" class="btn btn-default pull-right"><span class="glyphicon glyphicon-refresh"></span></button>
+          Logros
+          <button type="button" class="btn btn-default pull-right" id="refresh-badges"><span class="glyphicon glyphicon-refresh"></span></button>
         </h2>
       </div>
     </div> <!-- /col-md-12 -->
@@ -25,11 +25,39 @@
       <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <button class="close" id="delete-member">&times;</button>
-            <h3 class="panel-title">{{name}}</h3>
+            <button class="close delete-member">&times;</button>
+            <h3 class="panel-title">{{name}} ({{id}})</h3>
           </div>
           <div class="panel-body">
-            stackoverflow ID: <strong>{{id}}</strong>
+            <div class="row">
+              <div class="col-md-4 text-center">
+                <img src="{{profile_image}}" class="img-thumbnail">
+              </div>
+              <div class="col-md-5 col-md-offset-3">
+                <table class="table">
+                  <!-- <tr><th>Header</th></tr> -->
+                  <tbody>
+                    <tr>
+                      <td>Reputación</td>
+                      <td><span class="badge">{{reputation}}</span></td>
+                    </tr>
+                    <tr>
+                      <td>Medallas bronce</td>
+                      <td><span class="badge">{{badge_counts.bronze}}</span></td>
+                    </tr>
+                    <tr>
+                      <td>Medallas plata</td>
+                      <td><span class="badge">{{badge_counts.silver}}</span></td>
+                    </tr>
+                    <tr>
+                      <td>Medallas oro</td>
+                      <td><span class="badge">{{badge_counts.gold}}</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+              </div>
+            </div>
           </div>
         </div>
       </div> <!-- /col-md-6 -->
