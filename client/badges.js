@@ -60,12 +60,14 @@ Template.badges.events({
     });
     
     HTTP.get('https://api.stackexchange.com/2.2/users/' + membersId.join(';'),
-              {params: {order: "desc", sort: "reputation", site: "stackoverflow"}},
+              {params: {order: 'desc', sort: 'reputation', site: 'stackoverflow'}},
               function (error, result) {
-                if (error)
-                  alert("Error con la llamada a stackoverflow")
-                else
+                if (error) {
+                  Session.set('error-message', 'Error con la llamada a stackoverflow');
+                  $('#modal-error').modal('show');
+                } else {
                   Meteor.call('updateMember', result.data.items);
+                }
              });
   }
 })

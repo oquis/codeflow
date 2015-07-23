@@ -75,8 +75,14 @@
           ¿Estás seguro de eliminar al miembro <strong>{{selectedMember.name}}</strong> del equipo?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-          <button type="button" class="btn btn-primary" id="delete-confirm">Sí</button>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" class="btn btn-default btn-block" data-dismiss="modal">No</button>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-danger btn-block" id="delete-confirm">Sí</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

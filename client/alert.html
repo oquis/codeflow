@@ -1,0 +1,22 @@
+<template name="alert">
+  <!--
+    Alert dialog
+      Modal window used to show an error message
+  -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal-error">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          {{errorMessage}}
+        </div>
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

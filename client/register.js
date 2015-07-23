@@ -43,23 +43,24 @@ Template.register.events({
       // db, so we only need to reset the form and set focus on the member name
       if (result) {
         HTTP.get('https://api.stackexchange.com/2.2/users/' + memberSoId,
-                  {params: {order: "desc", sort: "reputation", site: "stackoverflow"}},
+                  {params: {order: 'desc', sort: 'reputation', site: 'stackoverflow'}},
                   function (error, response) {
                     if (error) {
                       // handle the error returned by the api
-                      e = response.data;
-                      if (e.error_id === 400 && e.error_message === "ids") {
+                      if (response && response.data.error_id === 400 && response.data.error_message === 'ids') {
                         Meteor.call('deleteMember', result);
-                        alert("No existe el ID de stackoverflow proporcionado");
+                        Session.set('error-message', 'No existe el ID de stackoverflow proporcionado');
+                      } else {
+                        Session.set('error-message', 'Error con la llamada a stackoverflow');
                       }
+                      $('#modal-error').modal('show');
                     } else {
                       // update the member's data
                       Meteor.call('updateMember', response.data.items);
+                      $('#member-registration')[0].reset();
+                      $memberName.focus();
                     }
                  });
-        
-        $('#member-registration')[0].reset();
-        $memberName.focus();
       }
     });
   },
