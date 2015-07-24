@@ -1,13 +1,36 @@
+/**
+  Helper functions for the questions template
+ */
 Template.questions.helpers({
+  /**
+    Returns all the questions received from the stackexchange API
+    that are stored in a session variable, not in the db
+   */
   questions: function () {
     return Session.get('team-questions');
   }
 });
 
+/**
+  Event handlers for the questions template
+ */
 Template.questions.events({
+  /**
+    Get all the members from the Members collection to make an HTTP call to the
+    stackexchange API to get the members' stackoverflow questions. If
+    the response is successful, the questions are stored in a session variable
+    to display them, if the response is an error, display an error message.
+   */
   'click #refresh-questions': function (event, template) {
     var members = Members.find().fetch(),
         membersId = [];
+    
+    // delete the questions shown and don't refresh the questions if
+    // there are no registered members
+    if (!members.length) {
+      Session.set('team-questions', []);
+      return;
+    }
     
     _.each(members, function (member) {
       membersId.push(member.id);
@@ -27,5 +50,6 @@ Template.questions.events({
                   Session.set('team-questions', result.data.items);
                 }
              });
+    return;
   }
 });

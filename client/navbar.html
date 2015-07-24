@@ -14,7 +14,21 @@
         <span class="navbar-brand">Codeflow</span>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
-        <p class="navbar-text">Puntaje y resumen de medallas en stackoverflow</p>
+        <ul class="nav navbar-nav">
+          <li><a href="#register">Registro</a></li>
+          
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Participación <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              {{#each members}}
+                <li><a href="#{{_id}}">{{name}}</a></li>
+              {{/each}}
+            </ul>
+          </li>
+          
+          <li><a href="#questions">Preguntas</a></li>
+        </ul>
+        <p class="navbar-text navbar-right">Juan Miguel Rubio</p>
       </div><!--/.nav-collapse -->
     </div>
   </nav>
