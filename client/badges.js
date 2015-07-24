@@ -37,11 +37,13 @@ Template.badges.events({
       - The Meteor deleteMember method is called to remove the user from the db
       - The selected-member session variable is cleared
       - The modal window gets hidden
+      - Trigger the refresh questions button click event to update the questions
    */
   'click #delete-confirm': function (event, template) {
     Meteor.call('deleteMember', Session.get('selected-member').id);
     Session.set('selected-member', '');
     $('#modal-confirm').modal('hide');
+    $('#refresh-questions').click();
   },
   
   /**

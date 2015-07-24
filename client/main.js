@@ -1,9 +1,9 @@
-if (Meteor.isClient) {
-  // code to run on client at startup
-}
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
+/**
+  When the subscription is ready, trigger the refresh questions button click
+  event to update the questions
+ */
+Meteor.subscribe('members', {
+  onReady: function () {
+    $('#refresh-questions').click();
+  }
+});

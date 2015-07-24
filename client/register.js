@@ -39,9 +39,9 @@ Template.register.events({
         }
       }
       
-      // if there were no error on the fields, the user has been added to the
-      // db, so we only need to reset the form and set focus on the member name
+      // no error on the fields, the member has been added to the db
       if (result) {
+        // get the member's stackoverflowinfo
         HTTP.get('https://api.stackexchange.com/2.2/users/' + memberSoId,
                   {params: {order: 'desc', sort: 'reputation', site: 'stackoverflow'}},
                   function (error, response) {
@@ -61,6 +61,8 @@ Template.register.events({
                       $memberName.focus();
                     }
                  });
+        // trigger the refresh questions button click event to update the questions
+        $('#refresh-questions').click();
       }
     });
   },
